@@ -61,16 +61,15 @@ public class TestBoxNicksoner {
         //result
         $(".modal-title").shouldHave(text("Thanks for submitting the form"));
         $(".table-responsive").shouldHave(
-                text("Иван Петров"),
-                text("ivan@example.com"),
+                text("Николай Харчук"),
+                text("example@example.com"),
                 text("Male"),
-                text("15 July,1990"),
+                text("26 October,1992"),
                 text("Maths, Arts"),
                 text("Sports, Reading"),
-                text("test.jpg"),
-                text("Москва, ул. Примерная, 123"),
+                text("cat_picture.jpg"),
+                text("Новиград"),
                 text("NCR Delhi")
         );
     }
 }
-
