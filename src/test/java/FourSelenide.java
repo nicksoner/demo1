@@ -29,9 +29,7 @@ public class FourSelenide {
 
         @Test
         void exampleCodeJUnit5() {
-            //open browser
             open("/selenide/selenide");
-            //section wiki
             $("#wiki-tab").click();
             $("#wiki-body").$("ul").shouldHave(text("Soft assertions"));
             $("#wiki-body")
