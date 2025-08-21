@@ -34,7 +34,7 @@ public class FiveDragDrop {
 
     @Test
     void dragAndDrop() {
-        // Проверяем начальное состояние
+
         $("#column-a").shouldHave(text("A"));
         $("#column-b").shouldHave(text("B"));
 
