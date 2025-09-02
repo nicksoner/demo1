@@ -28,6 +28,10 @@ public class PracticeFormPage {
 
     public PracticeFormPage openPage() {
         open("/automation-practice-form");
+        return this;
+    }
+
+    public PracticeFormPage removeBanner() {
         executeJavaScript("$('#fixedban').remove()");
         executeJavaScript("$('footer').remove()");
         return this;
@@ -104,7 +108,6 @@ public class PracticeFormPage {
     }
 
     public PracticeFormPage verifyValidationError(String fieldName) {
-        // Проверяем что модальное окно не появилось (форма не отправилась)
         modalTitle.shouldNotBe(visible);
 
         // Дополнительные проверки для разных полей
@@ -116,23 +119,18 @@ public class PracticeFormPage {
                 lastNameInput.shouldBe(empty);
                 break;
             case "gender":
-                // Проверяем что ни один пол не выбран
+
                 $("input[name='gender']:checked").shouldNotBe(exist);
                 break;
             case "mobile":
                 userNumberInput.shouldBe(empty);
                 break;
             case "email":
-                // Для email проверяем что значение осталось (невалидный email)
+
                 userEmailInput.shouldHave(value("invalid-email"));
                 break;
         }
         return this;
-    }
 
-    // Альтернативный метод - просто проверяем что форма не отправилась
-    public PracticeFormPage verifyFormNotSubmitted() {
-        modalTitle.shouldNotBe(visible);
-        return this;
     }
 }

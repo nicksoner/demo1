@@ -10,6 +10,7 @@ public class PracticeFormTests extends TestBase1 {
     @Test
     void fillFormTest() {
         practiceFormPage.openPage()
+                .removeBanner()
                 .setFirstName("Николай")
                 .setLastName("Харчук")
                 .setEmail("example@example.com")
@@ -26,23 +27,22 @@ public class PracticeFormTests extends TestBase1 {
                 .submit()
                 .verifyModalAppears();
 
-        practiceFormPage.getResultsTable()
-                .verifyResults(
-                        "Николай Харчук",
-                        "example@example.com",
-                        "Male",
-                        "26 October,1992",
-                        "Maths, Arts",
-                        "Sports, Reading",
-                        "cat_picture.jpg",
-                        "Новиград",
-                        "NCR Delhi"
-                );
+        practiceFormPage.getResultsTable().checkResult("Student Name", "Николай Харчук");
+        practiceFormPage.getResultsTable().checkResult("Student Email", "example@example.com");
+        practiceFormPage.getResultsTable().checkResult("Gender", "Male");
+        practiceFormPage.getResultsTable().checkResult("Mobile", "1234567899");
+        practiceFormPage.getResultsTable().checkResult("Date of Birth", "26 October,1992");
+        practiceFormPage.getResultsTable().checkResult("Subjects", "Maths, Arts");
+        practiceFormPage.getResultsTable().checkResult("Hobbies", "Sports, Reading");
+        practiceFormPage.getResultsTable().checkResult("Picture", "cat_picture.jpg");
+        practiceFormPage.getResultsTable().checkResult("Address", "Новиград");
+        practiceFormPage.getResultsTable().checkResult("State and City", "NCR Delhi");
     }
 
     @Test
     void fillFormWithMinimumDataTest() {
         practiceFormPage.openPage()
+                .removeBanner()
                 .setFirstName("Иван")
                 .setLastName("Иванов")
                 .setGender("Male")
@@ -61,6 +61,7 @@ public class PracticeFormTests extends TestBase1 {
     @Test
     void negativeTestWithoutRequiredFields() {
         practiceFormPage.openPage()
+                .removeBanner()
                 .submit();
 
         practiceFormPage.verifyValidationError("first name")
@@ -72,6 +73,7 @@ public class PracticeFormTests extends TestBase1 {
     @Test
     void negativeTestWithInvalidEmail() {
         practiceFormPage.openPage()
+                .removeBanner()
                 .setFirstName("Иван")
                 .setLastName("Иванов")
                 .setEmail("invalid-email")
