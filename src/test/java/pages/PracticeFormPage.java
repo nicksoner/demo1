@@ -103,8 +103,9 @@ public class PracticeFormPage {
         return this;
     }
 
-    public ResultsTableComponent getResultsTable() {
-        return resultsTableComponent;
+    public PracticeFormPage getResultsTable(String key, String value) {
+        resultsTableComponent.checkResult(key, value);
+        return this;
     }
 
     public PracticeFormPage verifyValidationError(String fieldName) {

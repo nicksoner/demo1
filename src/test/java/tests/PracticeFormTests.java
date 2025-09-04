@@ -27,16 +27,16 @@ public class PracticeFormTests extends TestBase1 {
                 .submit()
                 .verifyModalAppears();
 
-        practiceFormPage.getResultsTable().checkResult("Student Name", "Николай Харчук");
-        practiceFormPage.getResultsTable().checkResult("Student Email", "example@example.com");
-        practiceFormPage.getResultsTable().checkResult("Gender", "Male");
-        practiceFormPage.getResultsTable().checkResult("Mobile", "1234567899");
-        practiceFormPage.getResultsTable().checkResult("Date of Birth", "26 October,1992");
-        practiceFormPage.getResultsTable().checkResult("Subjects", "Maths, Arts");
-        practiceFormPage.getResultsTable().checkResult("Hobbies", "Sports, Reading");
-        practiceFormPage.getResultsTable().checkResult("Picture", "cat_picture.jpg");
-        practiceFormPage.getResultsTable().checkResult("Address", "Новиград");
-        practiceFormPage.getResultsTable().checkResult("State and City", "NCR Delhi");
+        practiceFormPage.getResultsTable("Student Name", "Николай Харчук");
+        practiceFormPage.getResultsTable("Student Email", "example@example.com");
+        practiceFormPage.getResultsTable("Gender", "Male");
+        practiceFormPage.getResultsTable("Mobile", "1234567899");
+        practiceFormPage.getResultsTable("Date of Birth", "26 October,1992");
+        practiceFormPage.getResultsTable("Subjects", "Maths, Arts");
+        practiceFormPage.getResultsTable("Hobbies", "Sports, Reading");
+        practiceFormPage.getResultsTable("Picture", "cat_picture.jpg");
+        practiceFormPage.getResultsTable("Address", "Новиград");
+        practiceFormPage.getResultsTable("State and City", "NCR Delhi");
     }
 
     @Test
@@ -50,12 +50,10 @@ public class PracticeFormTests extends TestBase1 {
                 .submit()
                 .verifyModalAppears();
 
-        practiceFormPage.getResultsTable()
-                .verifyResults(
-                        "Иван Иванов",
-                        "Male",
-                        "1234567890"
-                );
+        practiceFormPage.getResultsTable("Student Name", "Иван Иванов");
+        practiceFormPage.getResultsTable("Gender", "Male");
+        practiceFormPage.getResultsTable("Mobile", "1234567890");
+                ;
     }
 
     @Test
