@@ -4,7 +4,7 @@ import com.github.javafaker.Faker;
 import java.util.Locale;
 
 public class TestData {
-    private static final Faker faker = new Faker(new Locale("ru"));
+    private static final Faker faker = new Faker(new Locale("en")); // Изменено на английскую локаль
 
     public static String getFirstName() {
         return faker.name().firstName();
@@ -15,10 +15,9 @@ public class TestData {
     }
 
     public static String getEmail() {
-        return faker.internet().emailAddress()
-                .toLowerCase() // в нижнем регистре
-                .replaceAll("[^a-z0-9@.-]", "");
+        return faker.internet().emailAddress();
     }
+
     public static String getGender() {
         String[] genders = {"Male", "Female", "Other"};
         return faker.options().option(genders);
@@ -46,13 +45,47 @@ public class TestData {
         return faker.address().fullAddress();
     }
 
-    public static final String SUBJECT_1 = "Math";
-    public static final String SUBJECT_2 = "Arts";
-    public static final String HOBBY_1 = "Sports";
-    public static final String HOBBY_2 = "Reading";
+    // Генерация предметов через Faker
+    public static String getSubject() {
+        String[] subjects = {"Maths", "Arts", "English", "Physics", "Chemistry", "Computer Science",
+                "Economics", "Social Studies", "History", "Civics", "Commerce", "Accounting",
+                "Biology", "Hindi"};
+        return faker.options().option(subjects);
+    }
+
+    // Генерация хобби через Faker
+    public static String getHobby() {
+        String[] hobbies = {"Sports", "Reading", "Music"};
+        return faker.options().option(hobbies);
+    }
+
     public static final String PICTURE = "cat_picture.jpg";
-    public static final String STATE = "NCR";
-    public static final String CITY = "Delhi";
+
+    // Генерация штата через Faker
+    public static String getState() {
+        String[] states = {"NCR", "Uttar Pradesh", "Haryana", "Rajasthan"};
+        return faker.options().option(states);
+    }
+
+    // Генерация города в зависимости от выбранного штата
+    public static String getCity(String state) {
+        switch (state) {
+            case "NCR":
+                String[] ncrCities = {"Delhi", "Gurgaon", "Noida"};
+                return faker.options().option(ncrCities);
+            case "Uttar Pradesh":
+                String[] upCities = {"Agra", "Lucknow", "Merrut"};
+                return faker.options().option(upCities);
+            case "Haryana":
+                String[] haryanaCities = {"Karnal", "Panipat"};
+                return faker.options().option(haryanaCities);
+            case "Rajasthan":
+                String[] rajasthanCities = {"Jaipur", "Jaiselmer"};
+                return faker.options().option(rajasthanCities);
+            default:
+                return "Delhi";
+        }
+    }
 
     public static String getExpectedDateOfBirth(String day, String month, String year) {
         return day + " " + month + "," + year;

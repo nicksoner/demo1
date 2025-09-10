@@ -18,6 +18,12 @@ public class PracticeFormRandom extends TestBase1 {
         String month = TestData.getMonth();
         String year = TestData.getYear();
         String address = TestData.getAddress();
+        String subject1 = TestData.getSubject();
+        String subject2 = TestData.getSubject();
+        String hobby1 = TestData.getHobby();
+        String hobby2 = TestData.getHobby();
+        String state = TestData.getState();
+        String city = TestData.getCity(state);
 
         practiceFormPage.openPage()
                 .removeBanner()
@@ -27,13 +33,13 @@ public class PracticeFormRandom extends TestBase1 {
                 .setGender(gender)
                 .setUserNumber(phoneNumber)
                 .setBirthDate(day, month, year)
-                .setSubject(TestData.SUBJECT_1)
-                .setSubject(TestData.SUBJECT_2)
-                .setHobby(TestData.HOBBY_1)
-                .setHobby(TestData.HOBBY_2)
+                .setSubject(subject1)
+                .setSubject(subject2)
+                .setHobby(hobby1)
+                .setHobby(hobby2)
                 .uploadPicture(TestData.PICTURE)
                 .setCurrentAddress(address)
-                .setStateAndCity(TestData.STATE, TestData.CITY)
+                .setStateAndCity(state, city)
                 .submit()
                 .verifyModalAppears();
 
@@ -42,18 +48,18 @@ public class PracticeFormRandom extends TestBase1 {
         practiceFormPage.getResultsTable("Gender", gender);
         practiceFormPage.getResultsTable("Mobile", phoneNumber);
         practiceFormPage.getResultsTable("Date of Birth", TestData.getExpectedDateOfBirth(day, month, year));
-        practiceFormPage.getResultsTable("Subjects", "Maths, Arts");
-        practiceFormPage.getResultsTable("Hobbies", "Sports, Reading");
+        practiceFormPage.getResultsTable("Subjects", subject1 + ", " + subject2);
+        practiceFormPage.getResultsTable("Hobbies", hobby1 + ", " + hobby2);
         practiceFormPage.getResultsTable("Picture", TestData.PICTURE);
         practiceFormPage.getResultsTable("Address", address);
-        practiceFormPage.getResultsTable("State and City", TestData.STATE + " " + TestData.CITY);
+        practiceFormPage.getResultsTable("State and City", state + " " + city);
     }
 
     @Test
     void fillFormWithMinimumDataTest() {
         String firstName = TestData.getFirstName();
         String lastName = TestData.getLastName();
-        String gender = "Male";
+        String gender = TestData.getGender();
         String phoneNumber = TestData.getPhoneNumber();
 
         practiceFormPage.openPage()
